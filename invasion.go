@@ -1,0 +1,77 @@
+package main
+
+import (
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+// MOVES is the minimum moves amount for alien that is alive when program is finished
+const MOVES int = 10000
+
+func main() {
+
+	if len(os.Args) != 2 {
+		fmt.Println("Please specify the number of aliens\n./alien <NumOfAliens>")
+		os.Exit(1)
+	}
+
+	NumOfAliens, err := strconv.Atoi(os.Args[1])
+	if err != nil || NumOfAliens < 1 {
+		fmt.Println("Please specify POSITIVE number of aliens :)\n./alien <NumOfAliens>")
+		os.Exit(1)
+	}
+
+	worldMap := newMapFromFile("worldmap.txt")
+
+	// aliens slice contains only ALIVE aliens
+	aliens := genAliens(NumOfAliens, worldMap)
+
+	fmt.Println("------Map of the world before alien invasion------------")
+	worldMap.print()
+
+	fmt.Println("---------------Aliens start to fight--------------------")
+	for !aliensMadeAllMoves(aliens) {
+
+		// one alien could not destroy city himself
+		if len(aliens) == 1 {
+			break
+		}
+
+		// first figure out whether we already have collisions at the initial stage and
+		// only after that make aliens wander
+		curCityPopulation := make(map[city][]alien)
+		for _, alien := range aliens {
+			curCityPopulation[alien.location] = append(curCityPopulation[alien.location], alien)
+		}
+
+		for city, aliensToKill := range curCityPopulation {
+			if len(aliensToKill) > 1 {
+
+				alienIDs := make([]string, len(aliensToKill))
+				for _, alkill := range aliensToKill {
+					alienIDs = append(alienIDs, strconv.Itoa(alkill.alienID))
+
+					// update aliens slice in order not to iterate over dead aliens
+					aliens = removeDeadAlien(alkill, aliens)
+				}
+
+				fmt.Println(city, "has been destroyed by aliens", strings.Join(alienIDs, " "))
+				destroyCity(worldMap, city)
+			}
+		}
+
+		fmt.Println("-------------Alive aliens after round-------------------")
+		fmt.Println(aliens)
+		fmt.Println("--------------------------------------------------------")
+
+		// alive aliens are wandering around
+		for i := range aliens {
+			aliens[i].wander(worldMap)
+		}
+	}
+
+	fmt.Println("-------------post apocalyptic alien world---------------")
+	worldMap.print()
+}

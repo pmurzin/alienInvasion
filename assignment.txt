@@ -1,0 +1,42 @@
+Alien​ ​invasion
+==============
+Mad ​ ​aliens ​ ​are​ ​about​ ​to​ ​invade​ ​the​ ​earth​ a​nd​ ​you​ ​are​ ​tasked​ ​with​ ​simulating​ ​the 
+invasion. You​ ​are​ ​given​ ​a​ ​map​ ​containing​ t​he​ ​names​ ​of​ ​cities ​in​ ​the​ ​non-existent ​
+world​ ​of X.​ T​he​ ​map ​​is​ i​n​ ​a​ f​ile,​ ​with​ ​one​ ​city​ ​per​ ​line.​ ​The​ ​city​ ​name​ i​s​ ​first,
+followed​ ​by​ ​1-4​ ​directions​ (north,​ ​south,​ ​east,​ ​or​ w​est).​ E​ach​ ​one​ ​represents​ a​ 
+road​ t​o​ ​another​ ​city​ ​that​ ​lies​ ​in​ ​that​ ​direction.
+
+For​ ​example:
+
+Foo​ ​north=Bar​ ​west=Baz​ s​outh=Qu-ux
+Bar​ s​outh=Foo​ ​west=Bee
+
+The​ ​city​ a​nd​ ​each​ ​of​ t​he​ ​pairs​ ​are​ ​separated​ ​by ​​a​ ​single​ ​space,​ ​and​ ​the directions​ 
+are​ ​separated ​​from ​​their​ ​respective​ ​cities​ ​with​ ​an​ ​equals​ ​(=)​ ​sign.
+
+You ​ ​should​ ​create​ ​N​ ​aliens,​ ​where​ ​N​ ​is​ ​specified ​as​ ​a ​ ​command-line​ a​rgument.
+These​ ​aliens​ ​start​ ​out​ ​at​ ​random​ ​places​ ​on​ t​he​ ​map,​ ​and​ ​wander​ ​around ​randomly,
+following​ ​links.​ ​Each​ ​iteration,​ t​he​ ​aliens​ ​can​ ​travel​ ​in​ a​ny​ ​of​ ​the​ d​irections
+leading​ ​out​ o​f​ ​a​ c​ity.​ ​In​ ​our​ ​example​ ​above,​ ​an​ ​alien​ ​that​ ​starts​ ​at​ ​Foo​ ​can​ ​go
+north​ ​to​ ​Bar, ​ ​west​ t​o​ ​Baz,​ ​or​ ​south​ ​to​ ​Qu-ux. When​ ​two​ ​aliens​ ​end​ ​up​ ​in​ ​the​ ​same
+​​place, ​they​ f​ight,​ a​nd​ ​in​ ​the​ p​rocess​ ​kill each​ ​other​ ​and​ d​estroy​ ​the​ ​city.​ ​When​
+​a​ c​ity​ ​is​ ​destroyed,​ ​it​ ​is​ r​emoved​ ​from the​ ​map,​ ​and​ ​so​ ​are​ ​any​ ​roads​ ​that​ ​lead​ ​
+into ​​or​ ​out​ ​of​ ​it. In​ ​our​ ​example​ ​above,​ ​if​ ​Bar​ ​were​ d​estroyed​ ​the​ ​map​ ​would​ ​now​
+​be ​​something like:
+
+Foo​ ​west=Baz​ ​south=Qu-ux
+
+Once​ a​​ ​city​ ​is​ ​destroyed,​ ​aliens​ ​can​ n​o​ ​longer​ ​travel​ ​to​ ​or​ ​through​ ​it.​ ​This may​
+​lead​ ​to ​aliens​ ​getting​ ​"trapped". You​ ​should​ ​create​ ​a​ p​rogram​ ​that​ ​reads​ ​in​ ​the​ 
+​world​ m​ap,​ ​creates ​​N​ ​aliens,​ ​and unleashes​ ​them.​ ​The​ p​rogram​ ​should​ ​run​ ​until​ ​all​
+​the​ ​aliens​ ​have​ ​been destroyed,​ o​r​ ​each​ ​alien​ ​has​ m​oved​ ​at​ ​least​ ​10,000​ ​times.​ 
+When​ ​two​ ​aliensfight,​ ​print​ ​out​ ​a​ ​message​ ​like:
+
+Bar​ ​has ​ ​been​ d​ estroyed​ ​by​ ​alien​ ​10​ ​and​ a​lien​ ​34!
+
+(If ​ ​you​ ​want​ ​to ​ ​give​ ​them​ ​names,​ ​you​ ​may,​ ​but​ ​it​ ​is ​ ​not​ ​required.)​ ​Once​ ​the
+program​ ​has​ ​finished,​ ​it​ ​should​ ​print​ ​out​ w​hatever​ ​is​ ​left​ ​of ​the​ ​world​ ​in​ ​the
+same​ ​format​ ​as​ ​the​ ​input​ ​file.
+Feel​ ​free ​to​ ​make​ ​assumptions ​ ​(for​ e​xample,​ ​that​ ​the​ ​city​ ​names​ ​will​ ​never
+contain​ ​numeric ​characters),​ b​ut​ ​please​ ​add​ ​comments​ ​or ​assertions​ ​describing
+the​ ​assumptions ​​you​ ​are​ ​making.

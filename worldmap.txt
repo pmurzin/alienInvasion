@@ -1,0 +1,9 @@
+Foo north=Bar west=Baz south=Qu-ux east=Sef
+Bar south=Foo west=Bee east=Olsa
+Baz north=Bee east=Foo south=Gon
+Bee south=Baz east=Bar
+Qu-ux north=Foo east=Cro west=Gon
+Sef west=Foo south=Cro north=Olsa
+Cro north=Sef west=Qu-ux
+Olsa south=Sef west=Bar
+Gon north=Baz east=Qu-ux

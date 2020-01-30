@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"strings"
 )
 
 // MOVES is the minimum moves amount for alien that is alive when program is finished
@@ -49,15 +48,12 @@ func main() {
 		for city, aliensIDToKill := range curCityPopulation {
 			if len(aliensIDToKill) > 1 {
 
-				alienIDs := make([]string, len(aliensIDToKill))
+				// update aliens slice in order not to iterate over dead aliens
 				for _, alIDtoKill := range aliensIDToKill {
-					alienIDs = append(alienIDs, strconv.Itoa(alIDtoKill))
-
-					// update aliens slice in order not to iterate over dead aliens
 					aliens = removeDeadAlien(alIDtoKill, aliens)
 				}
 
-				fmt.Println(city, "has been destroyed by aliens", strings.Join(alienIDs, " "))
+				fmt.Println(city, "has been destroyed by aliens", intSliceToString(aliensIDToKill, ","))
 				destroyCity(worldMap, city)
 			}
 		}

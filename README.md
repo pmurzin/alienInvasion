@@ -6,7 +6,7 @@ they got stuck or dead.
 
 **Build:**
 ```
-go build invasion.go map.go alien.go city.go
+go build invasion.go map.go alien.go city.go util.go
 ```
 
 **Run:**

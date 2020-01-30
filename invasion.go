@@ -41,20 +41,20 @@ func main() {
 
 		// first figure out whether we already have collisions at the initial stage and
 		// only after that make aliens wander
-		curCityPopulation := make(map[city][]alien)
+		curCityPopulation := make(map[city][]int)
 		for _, alien := range aliens {
-			curCityPopulation[alien.location] = append(curCityPopulation[alien.location], alien)
+			curCityPopulation[alien.location] = append(curCityPopulation[alien.location], alien.alienID)
 		}
 
-		for city, aliensToKill := range curCityPopulation {
-			if len(aliensToKill) > 1 {
+		for city, aliensIDToKill := range curCityPopulation {
+			if len(aliensIDToKill) > 1 {
 
-				alienIDs := make([]string, len(aliensToKill))
-				for _, alkill := range aliensToKill {
-					alienIDs = append(alienIDs, strconv.Itoa(alkill.alienID))
+				alienIDs := make([]string, len(aliensIDToKill))
+				for _, alIDtoKill := range aliensIDToKill {
+					alienIDs = append(alienIDs, strconv.Itoa(alIDtoKill))
 
 					// update aliens slice in order not to iterate over dead aliens
-					aliens = removeDeadAlien(alkill, aliens)
+					aliens = removeDeadAlien(alIDtoKill, aliens)
 				}
 
 				fmt.Println(city, "has been destroyed by aliens", strings.Join(alienIDs, " "))

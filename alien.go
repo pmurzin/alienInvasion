@@ -68,9 +68,9 @@ func aliensMadeAllMoves(aliens []alien) bool {
 	return aliensMoves
 }
 
-func removeDeadAlien(al alien, aSlice []alien) []alien {
+func removeDeadAlien(alID int, aSlice []alien) []alien {
 	for idx, v := range aSlice {
-		if v == al {
+		if v.alienID == alID {
 			return append(aSlice[0:idx], aSlice[idx+1:]...)
 		}
 	}

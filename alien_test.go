@@ -73,7 +73,7 @@ func TestRemoveDeadAlien(t *testing.T) {
 		gotStuck:   false,
 	}
 
-	aliens = removeDeadAlien(al, aliens)
+	aliens = removeDeadAlien(al.alienID, aliens)
 
 	if sliceutil.Contains(aliens, al) {
 		t.Errorf("Expected alien %v to be removed from aliens slice, but zombie is still there!", al.alienID)
